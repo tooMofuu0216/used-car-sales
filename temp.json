@@ -1,0 +1,403 @@
+// brand
+[
+    "本田 HONDA",
+    "豐田 TOYOTA",
+    "奔馳 BENTLEY",
+    "平治 MERCEDES BENZ",
+    "平治 MERCEDES BENZ",
+    "速霸陸 SUBARU",
+    "款威 AUDI",
+    "豐田 TOYOTA",
+    "賓士 BMW",
+    "瑪莎拉蒂 MASERATI",
+    "凌志 LEXUS",
+    "保時捷 PORSCHE",
+    "奧迪 AUDI",
+    "豐田 TOYOTA",
+    "五十鈴 ISUZU",
+    "捷豹 JAGUAR"
+]
+
+// brand to model
+{
+    "HONDA": [
+        "FREED GB5",
+        "FREED HYBRID GP3"
+    ],
+    "TOYOTA": [
+        "ALPHARD3.5",
+        "WISH",
+        "VELLFIRE",
+        "ALPHARD 2.5 SC",
+        "GR86 RC 6MT",
+        "CHR HYBRID MODELLISTA",
+        "COROLLA NE121",
+        "SIENTA HYBRID G"
+    ],
+    "BENTLEY": [
+        "CONTINENTAL FLYING SPUR"
+    ],
+    "MERCEDES BENZ": [
+        "B200",
+        "E200 AVANTGARDE"
+    ],
+    "SUBARU": [
+        "IMPREZA 20K TURBO"
+    ],
+    "AUDI": [
+        "A6 55 TFSI QUATTRO"
+    ],
+    "BMW": [
+        "740LI",
+        "316IA SPORT"
+    ],
+    "MASERATI": [
+        "GHIBLI S GRANSPORT"
+    ],
+    "LEXUS": [
+        "GS200T"
+    ],
+    "PORSCHE": [
+        "MACAN 2.0"
+    ],
+    "ISUZU": [
+        "PICK UP"
+    ],
+    "JAGUAR": [
+        "XE 20T PRESTIGE"
+    ]
+}
+// new_img to img
+{
+    "FREED_GB5": "car_image_page1_1.jpg",
+    "ALPHARD3.5": "car_image_page1_2.jpg",
+    "CONTINENTAL_FLYING_SPUR": "car_image_page1_3.jpg",
+    "B200": "car_image_page1_4.jpg",
+    "WISH": "car_image_page1_5.jpg",
+    "E200_AVANTGARDE": "car_image_page1_6.jpg",
+    "VELLFIRE": "car_image_page1_7.jpg",
+    "FREED_HYBRID_GP3": "car_image_page1_8.jpg",
+    "IMPREZA_20K_TURBO": "car_image_page2_1.jpg",
+    "A6_55_TFSI_QUATTRO": "car_image_page2_2.jpg",
+    "GR86_RC_6MT": "car_image_page2_3.jpg",
+    "ALPHARD_2.5_SC": "car_image_page2_4.jpg",
+    "740LI": "car_image_page2_5.jpg",
+    "CHR_HYBRID_MODELLISTA": "car_image_page2_6.jpg",
+    "316IA_SPORT": "car_image_page3_1.jpg",
+    "GHIBLI_S_GRANSPORT": "car_image_page3_2.jpg",
+    "GS200T": "car_image_page3_3.jpg",
+    "MACAN_2.0": "car_image_page3_4.jpg",
+    "COROLLA_NE121": "car_image_page4_1.jpg",
+    "PICK_UP": "car_image_page4_3.jpg",
+    "XE_20T_PRESTIGE": "car_image_page4_4.jpg",
+    "ISUZU_PICK_UP": "car_image_page5_1.jpg",
+    "IMPRESA_20K_TURBO": "car_image_page5_3.jpg",
+    "JAGUAR_XE_20T_PRESTIGE": "car_image_page5_5.jpg",
+    "SIENTA_HYBRID_G": "car_image_page5_6.jpg"
+}
+
+  //hey
+  [
+    {
+      "CarName": "2017 本田 HONDA FREED GB5",
+      "year": 2017,
+      "brand": "HONDA",
+      "Price": "$108,000",
+      "CC": "1496 cc",
+      "Fuel": "油",
+      "Mileage Info": "0首",
+      "Key Features": "天窗, 後倒車鏡, 無事故",
+      "ImageFileName": "FREED_GB5"
+    },
+    {
+      "CarName": "2017 豐田 TOYOTA ALPHARD3.5",
+      "year": 2017,
+      "brand": "TOYOTA",  
+      "Price": "$388,000$438,000",
+      "CC": "3500 cc",
+      "Fuel": "油",
+      "Mileage Info": "0首、只行4萬9千公里",
+      "Key Features": "雙天窗, 四電梯門, 100%內地",
+      "ImageFileName": "ALPHARD3.5"
+    },
+    {
+      "CarName": "2006 奔馳 BENTLEY CONTINENTAL FLYING SPUR",
+      "year": 2006,
+      "brand": "BENTLEY",
+      "Price": "$103,000",  
+      "CC": "5998 cc",
+      "Fuel": "油",
+      "Key Features": "革質座椅,Keyless, 車控, 電加溫, 後倒車鏡, 六速減波器", 
+      "ImageFileName": "CONTINENTAL_FLYING_SPUR"
+    },
+    {
+      "CarName": "2010 平治 MERCEDES BENZ B200",
+      "year": 2010,
+      "brand": "MERCEDES BENZ",
+      "Price": "$30,000",
+      "CC": "2035 cc",
+      "Fuel": "油",
+      "Key Features": "黑色革質座椅,原裝合金鋼圈,P盤首選, 省油, 倒車易",
+      "ImageFileName": "B200"
+    },
+    {
+      "CarName": "2011 豐田 TOYOTA WISH",
+      "year": 2011, 
+      "brand": "TOYOTA",
+      "Price": "$28,000",
+      "CC": "1987 cc",
+      "Fuel": "油",
+      "Key Features": "天窗,Keyless, 後倒車鏡頭, 革質座椅, 車控, 倒車感應",
+      "ImageFileName": "WISH"
+    },
+    {
+      "CarName": "2016 平治 MERCEDES BENZ E200 AVANTGARDE",
+      "year": 2016,
+      "brand": "MERCEDES BENZ",
+      "Price": "$198,000",
+      "CC": "1991 cc",
+      "Fuel": "油",
+      "Key Features": "黑色,電動革位,天窗版,無鑰匙啟動,後倒車鏡頭,直版,行車", 
+      "ImageFileName": "E200_AVANTGARDE"
+    },
+    {
+      "CarName": "2017 豐田 TOYOTA VELLFIRE",
+      "year": 2017,
+      "brand": "TOYOTA",
+      "Price": "$358,000",
+      "CC": "3456 cc",
+      "Fuel": "油",
+      "Key Features": "銀色,0首,革質座椅,雙天窗,無鑰匙啟動,電尾門,後倒車鏡頭,直版,行車",
+      "ImageFileName": "VELLFIRE"
+    },
+    {
+      "CarName": "2015 本田 HONDA FREED HYBRID GP3",
+      "year": 2015,
+      "brand": "HONDA",
+      "Price": "$100,000",
+      "CC": "1500 cc", 
+      "Fuel": "混能",
+      "Key Features": "0首,KEYLESS GO,車控雙電門,包裝,Xenon DVD,後倒車鏡頭,多功能車控,15 inch鋼圈,省油$0.7/KM,多色多部",
+      "ImageFileName": "FREED_HYBRID_GP3"
+    },
+    {
+      "CarName": "2002 速霸陸 SUBARU IMPREZA 20K TURBO",
+      "year": 2002,
+      "brand": "SUBARU",
+      "Price": "$108,000",
+      "CC": "1944 cc",
+      "Fuel": "油",
+      "Key Features": "革質座椅,好力,內外企理,歡迎驗車,Trade in",
+      "ImageFileName": "IMPREZA_20K_TURBO" 
+    },
+    {
+      "CarName": "2018 款威 AUDI A6 55 TFSI QUATTRO",
+      "year": 2018,
+      "brand": "AUDI",
+      "Price": "$308,000",
+      "CC": "2995 cc",
+      "Fuel": "油",
+      "Key Features": "0字牌籍,行車,2020年5月落地,原廠保證,天窗,電尾門,B&O音響,360鏡頭,軟硬,GPS,四區暖氣,電尾箱",
+      "ImageFileName": "A6_55_TFSI_QUATTRO"
+    },
+    {
+      "CarName": "2023 豐田 TOYOTA GR86 RC 6MT",
+      "year": 2023,
+      "brand": "TOYOTA",
+      "Price": "$338,000",
+      "CC": "2400 cc", 
+      "Fuel": "油",
+      "Key Features": "全新車,水平對向引擎,6速曼波,KEYLESS,電子投射計時板,電子暖氣,LED頭尾燈,本地現車,多色多部",
+      "ImageFileName": "GR86_RC_6MT"
+    },
+    {
+      "CarName": "2018 豐田 TOYOTA ALPHARD 2.5 SC",
+      "year": 2018,
+      "brand": "TOYOTA",
+      "Price": "$368,000",
+      "CC": "2500 cc",
+      "Fuel": "油",
+      "Key Features": "0首,Keyless,黑色2.5SC,頂級版,7座,3電門,4電動皮座,ALPINE機及行車紀錄,中排液Mon,倒車鏡,18 inch鋼圈", 
+      "ImageFileName": "ALPHARD_2.5_SC"
+    },
+    {
+      "CarName": "2015 賓士 BMW 740LI",
+      "year": 2015,
+      "brand": "BMW",
+      "Price": "$268,000",
+      "CC": "2998 cc",
+      "Fuel": "油",
+      "Key Features": "為62 2015年制,行車,1首車,只行45000km,雙天窗,電尾軍,電子液晶錶盤,氣墊懸吊,360倒車鏡頭",
+      "ImageFileName": "740LI"
+    },
+    {
+      "CarName": "2018 豐田 TOYOTA CHR HYBRID MODELLISTA",
+      "year": 2018,
+      "brand": "TOYOTA",
+      "Price": "$208,000",
+      "CC": "1800 cc",
+      "Fuel": "混能",
+      "Key Features": "未出牌,0首,環保混燃引擎,KEYLESS,DVD/後波鏡,GANADOR 死氣霸,防護雨襷,違線警報,XENON,20 inch合金鋼圈",
+      "ImageFileName": "CHR_HYBRID_MODELLISTA"
+    }, 
+    {
+      "CarName": "2013 賓士 BMW 316IA SPORT",
+      "year": 2013,
+      "brand": "BMW",
+      "Price": "$49,800",
+      "CC": "1600 cc",
+      "Fuel": "油",
+      "Key Features": "歡迎查詢2013 BMW 316ia sport(f30) 1.6t ✅行車 2首 ✅雙電動皮座 ✅天窗 ✅前後倒車感應 ✅無鑰匙啟動 ✅停車煞系統 ✅18吋鋼圈 ✅只行7萬公里 歡迎各大驗車公司上門驗車 $4️⃣9️⃣8️⃣0️⃣0️⃣ 代辦運輸牌文文件 保險 政府驗車",
+      "ImageFileName": "316IA_SPORT"
+    },
+    {
+      "CarName": "2018 瑪莎拉蒂 MASERATI GHIBLI S GRANSPORT",
+      "year": 2018,
+      "brand": "MASERATI",
+      "Price": "$498,000",
+      "CC": "2979 cc",
+      "Fuel": "油",
+      "Key Features": "0字牌籍,行車,新款Facelift,Gran Sport包裝,2018年製作,原廠保證記錄至今,電動尾門,全車電子鑰匙",
+      "ImageFileName": "GHIBLI_S_GRANSPORT"
+    },
+    {
+      "CarName": "2017 凌志 LEXUS GS200T",
+      "year": 2017,
+      "brand": "LEXUS",
+      "Price": "$168,000",
+      "CC": "1998 cc",
+      "Fuel": "油",
+      "Key Features": "行車,天窗,中英文GPS,真皮冷暖座檯,直四Turbo引擎,245匹馬力,八速+/-波,軟硬音響,倒車鏡頭",
+      "ImageFileName": "GS200T"
+    },
+    {
+      "CarName": "2017 保時捷 PORSCHE MACAN 2.0",
+      "year": 2017,
+      "brand": "PORSCHE", 
+      "Price": "$328,000",
+      "CC": "1984 cc",
+      "Fuel": "油",
+      "Key Features": "保時成行車,2017年製作,天蓬,後排冷氣,側牌,倒車鏡,軟硬音響,10GB音樂存儲硬碟,SD卡/USB/Aux-In",
+      "ImageFileName": "MACAN_2.0"
+    },
+    {
+      "CarName": "2000 豐田 TOYOTA COROLLA NE121",
+      "year": 2000,
+      "brand": "TOYOTA",
+      "Price": "$20,000",
+      "CC": "1497 cc",
+      "Fuel": "油",
+      "Key Features": "經典車款,革質座椅,天窗,保養好,已更換4支避震,新頭蓋力皮,冷氣機正常,車廂內 原廠保護",
+      "ImageFileName": "COROLLA_NE121"
+    },
+    {
+      "CarName": "2006 凌特利 BENTLEY CONTINENTAL FLYING SPUR",
+      "year": 2006,
+      "brand": "BENTLEY",
+      "Price": "$103,000",
+      "CC": "5998 cc",
+      "Fuel": "油",
+      "Key Features": "皮座,Keyless,車控,電加溫,倒車感應,六速減波器",
+      "ImageFileName": "CONTINENTAL_FLYING_SPUR"
+    },
+    {
+      "CarName": "2010 平治 MERCEDES BENZ B200",
+      "year": 2010,
+      "brand": "MERCEDES BENZ",
+      "Price": "$30,000",
+      "CC": "2035 cc",
+      "Fuel": "油",
+      "Key Features": "黑色皮座,原裝合金鋼圈,P盤首選,省油,倒車易",
+      "ImageFileName": "B200"
+    },
+    {
+      "CarName": "2011 豐田 TOYOTA WISH",
+      "year": 2011,
+      "brand": "TOYOTA",
+      "Price": "$28,000",
+      "CC": "1987 cc", 
+      "Fuel": "油",
+      "Key Features": "天窗,Keyless,後倒車鏡頭,革質座椅,車控,倒車感應",
+      "ImageFileName": "WISH"
+    },
+    {
+      "CarName": "2016 平治 MERCEDES BENZ E200 AVANTGARDE",
+      "year": 2016,
+      "brand": "MERCEDES BENZ",
+      "Price": "$198,000",
+      "CC": "1991 cc",
+      "Fuel": "油",
+      "Key Features": "黑色,電動革位,天窗版,無鑰匙啟動,後倒車鏡頭,直版,行車",
+      "ImageFileName": "E200_AVANTGARDE"
+    },
+    {
+      "CarName": "2017 豐田 TOYOTA VELLFIRE",
+      "year": 2017,
+      "brand": "TOYOTA",
+      "Price": "$358,000",
+      "CC": "3456 cc",
+      "Fuel": "油",
+      "Key Features": "銀色,0首,革質座椅,雙天窗,無鑰匙啟動,電尾門,後倒車鏡頭,直版,行車",
+      "ImageFileName": "VELLFIRE"
+    },
+    {
+      "CarName": "2017 本田 HONDA FREED HYBRID GP3",
+      "year": 2017,
+      "brand": "HONDA",
+      "Price": "$100,000",
+      "CC": "1500 cc",
+      "Fuel": "混能",
+      "Key Features": "0首,KEYLESS GO,車控雙電門,包裝,Xenon DVD,後倒車鏡頭,多功能車控,15 inch鋼圈,省油$0.7/KM,多色多部",
+      "ImageFileName": "FREED_HYBRID_GP3"
+    },
+    {
+      "CarName": "2010 五十鈴 ISUZU PICK UP",
+      "year": 2010,
+      "brand": "ISUZU",
+      "Price": "$145,000",
+      "CC": "2499 cc", 
+      "Fuel": "油",
+      "Key Features": "農夫車,2011首次登記,油泵,使用期限2026年,可向政府退稅13萬,冷氣機正常,歡迎驗車,Trade in",
+      "ImageFileName": "PICK_UP" 
+    },
+    {
+      "CarName": "2002 速霸陸 SUBARU IMPREZA 20K TURBO",
+      "year": 2002,
+      "brand": "SUBARU",
+      "Price": "$108,000",
+      "CC": "1944 cc",
+      "Fuel": "油",
+      "Key Features": "革質座椅,好力,內外企理,歡迎驗車,Trade in",
+      "ImageFileName": "IMPREZA_20K_TURBO"
+    },
+    {
+      "CarName": "2016 豐田 TOYOTA VELLFIRE",  
+      "year": 2016,
+      "brand": "TOYOTA",
+      "Price": "$320,000",
+      "CC": "2493 cc",
+      "Fuel": "油", 
+      "Key Features": "設備:皮座,內外新漆,好力,空間寬放,雙電門,雙天窗,keyless", 
+      "ImageFileName": ""
+    },
+    {
+      "CarName": "2018 捷豹 JAGUAR XE 20T PRESTIGE",
+      "year": 2018,
+      "brand": "JAGUAR",
+      "Price": "$78,000",
+      "CC": "2000 cc",
+      "Fuel": "油",
+      "Key Features": "1首,行車,7xxxxKm,全景天窗,後倒車鏡頭,Keyless,Xenon,軟硬音響,電動記憶皮座,18 inch鋼圈,後排冷氣",
+      "ImageFileName": "XE_20T_PRESTIGE"
+    },
+    {
+      "CarName": "2017 豐田 TOYOTA SIENTA HYBRID G",
+      "year": 2017,
+      "brand": "TOYOTA",
+      "Price": "$135,000",
+      "CC": "1500 cc",
+      "Fuel": "混能",
+      "Key Features": "0首頂級G版,車控雙電門,原廠Led頭尾燈,原廠霧燈,Keyless,15 inch鋼圈,違線提示,防護雨襷,",
+      "ImageFileName": "SIENTA_HYBRID_G"
+    }
+]
