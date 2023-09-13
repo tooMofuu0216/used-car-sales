@@ -5,6 +5,7 @@ import { CustomModal } from './CustomModal';
 import { User } from '@supabase/auth-helpers-nextjs'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase';
+import { Spinner } from 'flowbite-react';
 
 interface NavBarProp {
     user: User | null
@@ -13,19 +14,22 @@ interface NavBarProp {
 
 const CustomNavBar = (
     // { user }: NavBarProp
-    ) => {
+) => {
     const [showMenu, setShowMenu] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState<User | null>();
     const supabase = createClientComponentClient<Database>()
 
     useEffect(() => {
-        const getCurrentUser = async() => {
-          const res = await supabase.auth.getUser()
-          setUser(res.data.user)
+        const getCurrentUser = async () => {
+            setIsLoading(true)
+            const res = await supabase.auth.getUser()
+            setUser(res.data.user)
+            setIsLoading(false)
         }
         getCurrentUser()
-      }, [])
+    }, [])
 
 
     const toggleMenu = () => {
@@ -35,13 +39,15 @@ const CustomNavBar = (
     const handleLogOut = async () => {
         // /auth/logout
         try {
+            setIsLoading(true)
             const res = await fetch(`/auth/logout`, { method: 'POST' })
-            console.table(res)
-            if(res.status === 200){
+            if (res.status === 200) {
                 setUser(null)
             }
         } catch (error) {
             console.error(error)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -54,9 +60,7 @@ const CustomNavBar = (
         : (
             <>
                 <li>
-                    <button onClick={() => setShowModal(true)}>
-                        Edit Listing
-                    </button>
+                    <Link href="/editList">Edit Listings</Link>
                 </li>
                 <li><Link href="/sell">Sell Car</Link></li>
                 <li><Link href="#" onClick={handleLogOut}>Log Out</Link></li>
@@ -71,7 +75,7 @@ const CustomNavBar = (
                 </div>
                 {/* <div className={`md:flex space-x-4 ${showMenu ? 'block' : 'hidden'}`}> */}
                 <ul className={`hidden md:flex space-x-4 ${showMenu ? 'block' : 'hidden'}`}>
-                    {navItems}
+                    {isLoading?<Spinner aria-label="load user" />:navItems}
                 </ul>
                 {/* </div> */}
                 <div className="md:hidden">
@@ -83,7 +87,7 @@ const CustomNavBar = (
                 <div className={`md:hidden absolute top-16 right-0 w-screen
                 text-center z-50 ${showMenu ? 'block' : 'hidden'} bg-white`}>
                     <ul className="px-4 py-2 cursor-pointer space-y-4">
-                        {navItems}
+                    {isLoading?<Spinner aria-label="load user" />:navItems}
                     </ul>
                 </div>
             </div>

@@ -15,7 +15,7 @@ export const CustomCarousel = ({ latestCars }: CustomCarouselProp) => {
     const customTheme: CustomFlowbiteTheme = {
         carousel: {
             item: {
-                wrapper: `w-[${carouselItemWidth}] mx-4 flex-shrink-0 transform cursor-grab snap-center"`
+                wrapper: `w-[${carouselItemWidth}] mx-4 flex-shrink-0 transform cursor-grab snap-center`
             }
         }
     };
@@ -26,15 +26,13 @@ export const CustomCarousel = ({ latestCars }: CustomCarouselProp) => {
              className='h-64 items-center px-4 gap-4 bg-gray-400 dark:bg-gray-700 dark:text-white'
                 slide={false}
                 indicators={false} >
-                {/* <div className=""> */}
                 {
                     latestCars && latestCars.map((car, idx) => (
-                        <div key={idx} className={`${carouselItemWidth}`}>
+                        <div key={idx} className={`w-[200px]`}>
                             <CardWithImg carData={car} carThumb={car?.imagefilenames?.[0] || ""} key={idx} />
                         </div>
                     ))
                 }
-                {/* </div> */}
             </Carousel>
         </Flowbite>
     );

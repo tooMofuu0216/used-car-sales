@@ -19,7 +19,7 @@ export const CardWithImg = ({ carData, carThumb }: CardProp) => {
             <Card>
                 <Image width={200} alt={`Slide `} height={200}
                     src={`${IMG_URL_PREFIX}${carThumb}.jpg` || defaultImg}
-                    className='aspect-video' />
+                    className='aspect-video w-full' />
                 <h5 className="text-sm font-bold truncate tracking-tight text-gray-900 dark:text-white">
                 {carData?.carname}
                 </h5>

@@ -2,16 +2,35 @@ import { SearchBar } from '@/components/SearchBar'
 import React from 'react'
 import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import type { Database } from '@/types/supabase'
+import type { Database, Tables } from '@/types/supabase'
 import { CardWithImg } from '@/components/CardWithImg'
 import { SELECT_RECORD_SIZE } from "@/constant/constant";
 
-const Cars = async () => {
+const Cars = async ({
+  searchParams,
+}: {
+  searchParams: { search?: string }
+}) => {
+  const searchQuery = searchParams.search ?? ""
   const supabase = createServerComponentClient<Database>({ cookies })
-  const { data } = await supabase.from('carlisting')
-    .select()
-    .order("create_dt")
-    .limit(SELECT_RECORD_SIZE)
+  let carLists:Tables<'carlisting'>[] = []
+
+  // console.log(searchQuery)
+  if (searchQuery.length > 0) {
+    const { data } = await supabase.from('carlisting')
+      .select()
+      .textSearch('carname', `${searchQuery}`)
+      .order("create_dt")
+      .limit(SELECT_RECORD_SIZE)
+      carLists = data || []
+  }else{
+    const { data } = await supabase.from('carlisting')
+      .select()
+      .order("create_dt")
+      .limit(SELECT_RECORD_SIZE)
+      carLists = data || []
+  }
+
 
   return (
     <>
@@ -23,7 +42,7 @@ const Cars = async () => {
            lg:grid-cols-3
            xl:grid-cols-4`}>
           {
-            data && data.map((car, idx) => (
+            carLists && carLists.map((car, idx) => (
               <CardWithImg carData={car} carThumb={car?.imagefilenames?.[0] || ""} key={idx} />
             ))
           }
