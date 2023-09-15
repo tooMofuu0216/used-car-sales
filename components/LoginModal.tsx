@@ -5,12 +5,12 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from '@/types/supabase'
 
 
-interface CustomModalProp {
+interface LoginModalProp {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
     showModal: boolean
 }
 
-export const CustomModal = ({ setShowModal, showModal }: CustomModalProp) => {
+export const LoginModal = ({ setShowModal, showModal }: LoginModalProp) => {
     const supabase = createClientComponentClient<Database>()
 
     const login = "LOGIN"
@@ -55,7 +55,6 @@ export const CustomModal = ({ setShowModal, showModal }: CustomModalProp) => {
                 },
             },
         })
-        console.log(data, error)
     }
 
     return (
@@ -73,31 +72,37 @@ export const CustomModal = ({ setShowModal, showModal }: CustomModalProp) => {
                                 </button>
                             </div>
 
-                            <div>
+                            <div className='px-20'>
                                 <form
                                     action={formAction}
                                     method="post"
                                     className="flex flex-col space-y-2">
                                     <div className='mb-4'>
 
-                                        <h3 className='text-center text-sm'>With</h3>
-                                        <div className='flex justify-center gap-2'>
-                                            <button className='hover:bg-slate-400 duration-500 border-2 p-2 rounded-lg'
-                                                name={githubLogin}
-                                                onClick={handleSocialLogin}>
-                                                <BsGithub />
-                                            </button>
-                                            <button
-                                                name={googleLogin}
-                                                className='hover:bg-slate-400 duration-500 border-2 p-2 rounded-lg'
-                                                onClick={handleSocialLogin}
-                                            >
-                                                <BsGoogle />
-                                            </button>
+                                        <h3 className='text-center text-lg my-4'>Login With Provider:</h3>
+                                        <div className='flex justify-between gap-8'>
+                                            <div className='flex flex-col-reverse'>
+                                                With Github
+                                                <button className='hover:bg-slate-400 duration-500 border-2 p-2 rounded-lg '
+                                                    name={githubLogin}
+                                                    onClick={handleSocialLogin}>
+                                                    <BsGithub  />
+                                                </button>
+                                            </div>
+                                            <div className='flex flex-col-reverse'>
+                                                With Google
+                                                <button
+                                                    name={googleLogin}
+                                                    className='hover:bg-slate-400 duration-500 border-2 p-2 rounded-lg'
+                                                    onClick={handleSocialLogin}
+                                                >
+                                                    <BsGoogle />
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <h3 className='text-center text-sm'>Or with your email:</h3>
+                                    {/* <h3 className='text-center text-sm'>Or with your email:</h3>
                                     <input name="email" placeholder='Email' className='outline-none p-2 border-b-2' />
                                     <input type="password" name="password" placeholder='Password' className='outline-none p-2 border-b-2' />
                                     {
@@ -106,8 +111,8 @@ export const CustomModal = ({ setShowModal, showModal }: CustomModalProp) => {
                                             <button className='text-left text-xs'>Forgot Password?</button>
                                         </span>)
                                     }
-                                    <button className='border-green-500 border-2'>{formName}</button>
-                                    <span>
+                                    <button className='border-green-500 border-2'>{formName}</button> */}
+                                    {/* <span>
                                         {formName === login
                                             ? `Don't have account? `
                                             : `Have account? `}
@@ -115,7 +120,7 @@ export const CustomModal = ({ setShowModal, showModal }: CustomModalProp) => {
                                             onClick={setFormNameAndAction}
                                             className='text-blue-300'
                                         >{formName === login ? signup : login}</button>
-                                    </span>
+                                    </span> */}
                                 </form>
                             </div>
                         </div>

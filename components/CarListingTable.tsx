@@ -1,79 +1,130 @@
 'use client';
 
-import { Tables } from '@/types/supabase';
-import { Button, Modal, Table } from 'flowbite-react';
+import { CarListingFormDT, Tables } from '@/types/supabase';
+import { Button, Modal, Spinner, Table } from 'flowbite-react';
 import Link from 'next/link';
-import { useState } from 'react';
-import ModalContainer from './ModalContainer';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { DelCarForm } from './DelCarForm';
-import { SellCarForm } from './SellCarForm';
+import { CarListingForm } from './CarListingForm';
+import { EDIT_FORM, SELECT_RECORD_SIZE } from '@/constant/constant';
+import { resultAndformModalControlProp, searchParamsType } from '@/types/common';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useInView } from 'react-intersection-observer';
+import { fetchListings } from '@/action/serverAction';
 
 export default function CarListingTable({
-    tableData
+    tableData,
+    brands,
+    searchParams
 }: {
-    tableData: Tables<'carlisting'>[]
+    tableData: CarListingFormDT[],
+    brands: Tables<'carbrand'>[] | null,
+    searchParams: searchParamsType
 }) {
     const [openModal, setOpenModal] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [modalTitle, setModalTitle] = useState('');
-    const [selectedCarID, setSelectedCarID] = useState(``);
+    const [tableDataIdx, setTableDataIdx] = useState<number>(0);
+    const [tableDataList, setTableDataList] = useState<CarListingFormDT[]>(tableData);
+    const supabase = createClientComponentClient()
 
 
-    const handleEdit = (ev:React.MouseEvent) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [msgText, setMsgText] = useState(``);
+    const tableHeaderID = `ID`
+    const tableHeaderCarName = `Car Name`
+    const tableHeaderPrice = `Price`
+
+    const { ref, inView } = useInView();
+    const [page, setPage] = useState(1);
+    const [isMore, setIsMore] = useState(true);
+
+    const loadMore = async () => {
+        const newCars = (await fetchListings(page, searchParams)) ?? [];
+        setTableDataList((prev: CarListingFormDT[]) => [...prev, ...newCars]);
+        setPage(prev => prev + 1);
+        setIsMore(newCars.length > 0)
+    };
+
+    useEffect(() => {
+        if (inView) {
+            loadMore();
+        }
+    }, [inView]);
+
+    const resultAndformModalControl: resultAndformModalControlProp =
+        { isLoading, setIsLoading, showModal, setShowModal, msgText, setMsgText, setOpenModal }
+
+
+    const handleEdit = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setOpenModal(true)
         setIsEdit(true)
-        setModalTitle(`Edit Car Listing Form`)
-        const carID = ev.currentTarget.getAttribute('name') || ''
-        setSelectedCarID(carID)
+        setModalTitle(`Edit Car Listing Form - ${ev.currentTarget.getAttribute('name')}`)
+        setTableDataIdx(Number(ev.currentTarget.dataset?.idx) || 0)
     }
 
-    function handleDel(ev:React.MouseEvent): void {
+    const handleDel = (ev: React.MouseEvent<HTMLButtonElement>) => {
         setOpenModal(true)
         setIsEdit(false)
-        setModalTitle(`Delete Car Listing Form`)
-        const carID = ev.currentTarget.getAttribute('name') || ''
-        setSelectedCarID(carID)
+        setModalTitle(`Delete Car Listing Form - ${ev.currentTarget.getAttribute('name')}`)
+        setTableDataIdx(Number(ev.currentTarget.dataset?.idx) || 0)
     }
 
+    useEffect(() => {
+        setPage(1)
+        const firstPage = 0
+        const refresh = async () => {
+            const newCars = (await fetchListings(firstPage, searchParams)) ?? [];
+            setTableDataList(newCars)
+        }
+        refresh()
+    }, [isLoading])
+
+    useEffect(() => {
+        setTableDataList(tableData)
+    }, [tableData])
+
+
     return (
-        <>
+
+        tableData ? <>
             <Table hoverable>
 
-                <Table.Head className='min-[870px]:table-header-group hidden'>
+                <Table.Head className='md:table-header-group hidden'>
                     <Table.HeadCell>
-                        Car Name
+                        {tableHeaderID}
                     </Table.HeadCell>
                     <Table.HeadCell>
-                        Price
+                        {tableHeaderCarName}
                     </Table.HeadCell>
                     <Table.HeadCell>
-                        <span className="sr-only">
-                            Page Link
-                        </span>
-                    </Table.HeadCell>
-                    <Table.HeadCell>
-                        <span className="sr-only">
-                            Edit
-                        </span>
+                        {tableHeaderPrice}
                     </Table.HeadCell>
                     <Table.HeadCell>
                         <span className="sr-only">
-                            Delete
+                            Button Group: link, edit, delete
                         </span>
                     </Table.HeadCell>
                 </Table.Head>
 
                 <Table.Body className="divide-y">
                     {
-                        tableData && tableData.map((row, idx) => (
-                            <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800 min-[870px]:table-row flex flex-col">
+                        tableDataList && tableDataList.map((row, idx) => (
+                            <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800 text-gray-900 dark:text-white md:table-row flex flex-col">
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                    <span className='md:hidden inline font-semibold '>{tableHeaderID}: </span>
+                                    {row.listingid}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <span className='md:hidden inline font-semibold '>{tableHeaderCarName}: </span>
                                     {row.carname}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {row.price}
+                                    <span className='md:hidden inline font-semibold '>{tableHeaderPrice}: </span>
+                                    ${row.price}
                                 </Table.Cell>
-                                <Table.Cell className='text-right min-[820px]:text-left'>
+                                <Table.Cell className='flex justify-end space-x-4'>
                                     <Link
                                         className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
                                         href={`/cars/${row.listingid}`}
@@ -84,10 +135,12 @@ export default function CarListingTable({
                                             </p>
                                         </Button>
                                     </Link>
-                                </Table.Cell>
-                                <Table.Cell className='text-right min-[820px]:text-left'>
+
+                                    {/* edit */}
                                     <Button
-                                        name={`${row.listingid}`} 
+                                        color="success"
+                                        name={`${row.listingid}`}
+                                        data-idx={idx}
                                         className="font-medium "
                                         onClick={handleEdit}
                                     >
@@ -95,10 +148,12 @@ export default function CarListingTable({
                                             Edit
                                         </p>
                                     </Button>
-                                </Table.Cell>
-                                <Table.Cell className='text-right min-[820px]:text-left'>
+
+                                    {/* delete */}
                                     <Button
-                                        name={`${row.listingid}`} 
+                                        color="failure"
+                                        name={`${row.listingid}`}
+                                        data-idx={idx}
                                         className="font-medium "
                                         onClick={handleDel}
                                     >
@@ -113,15 +168,57 @@ export default function CarListingTable({
                 </Table.Body>
             </Table>
 
-            <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
+            {isMore &&
+                (<div
+                    className="flex justify-center p-4"
+                    ref={ref}
+                >
+                    <Spinner />
+                </div>)}
+            <Modal dismissible show={openModal}
+                onClose={() => {
+                    if (isLoading) return false
+                    setOpenModal(false)
+                }}>
                 <Modal.Header>{modalTitle}</Modal.Header>
                 <Modal.Body className='md:m-auto'>
                     {isEdit
-                    ?<SellCarForm brands={null} editCarInfo={selectedCarID}/>
-                    :<DelCarForm />}
+                        ? <CarListingForm
+                            brands={brands}
+                            type={EDIT_FORM}
+                            listingData={tableDataList[tableDataIdx]}
+                            resultAndformModalControl={resultAndformModalControl}
+                        />
+                        : <DelCarForm
+                            listingid={tableDataList[tableDataIdx]?.listingid}
+                            setOpenModal={setOpenModal}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                        />}
                 </Modal.Body>
             </Modal>
+
+
+            {/*  show result and loading*/}
+            {showModal && (
+                <Modal
+                    show={showModal}
+                    onClose={async () => {
+                        if (isLoading) return false
+                        setShowModal(false)
+                    }}>
+                    <Modal.Header>Message</Modal.Header>
+                    <Modal.Body>
+                        <div className={`ml-3 text-md font-normal `}>
+                            {isLoading ? (<Spinner aria-label="Loading" />) : (msgText)}
+                        </div>
+                    </Modal.Body>
+                </Modal>)
+            }
         </>
+            : <>
+                <div>No Listing Data</div>
+            </>
     )
 }
 

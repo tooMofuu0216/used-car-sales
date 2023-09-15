@@ -4,11 +4,11 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image';
-import defaultImg from '@/public/heroImg.jpg'
 import { FaWhatsapp } from 'react-icons/fa'
 import { CardWithImg } from '@/components/CardWithImg'
 import { CustomCarousel } from '@/components/CustomCarousel'
-import { IMG_URL_PREFIX, MAX_IMG } from '@/constant/constant'
+import { DEFAULT_GRID_IMG, IMG_URL_PREFIX, MAX_IMG, SELECT_RECORD_SIZE } from '@/constant/constant'
+import { GridAlbum } from '@/components/GridAlbum'
 
 const page = async ({ params }: { params: { carID: string } }) => {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -21,7 +21,9 @@ const page = async ({ params }: { params: { carID: string } }) => {
   }
   const car = await getCarItem()
 
-  const imgList = car?.imagefilenames?.length === MAX_IMG ? car?.imagefilenames : new Array(MAX_IMG).fill(car?.imagefilenames?.[0])
+  const imgList = new Array(MAX_IMG).fill(DEFAULT_GRID_IMG)
+  if(car?.imagefilenames)
+    imgList.splice(0,car?.imagefilenames?.length, ...car?.imagefilenames)
 
   // get cars where BrandID = 1 if no car?.brandid
   const defaultBrandID = 1
@@ -30,8 +32,9 @@ const page = async ({ params }: { params: { carID: string } }) => {
     const { data } = await supabase.from('carlisting')
       .select()
       .eq('brandid', brandID)
-      .order("create_dt")
-      .limit(10)
+      .neq('listingid', params.carID)
+      .order("create_dt", { ascending: false })
+      .range(0, SELECT_RECORD_SIZE)
     return data
   }
   const relatedCarItem = await getRelatedCarItem()
@@ -41,33 +44,7 @@ const page = async ({ params }: { params: { carID: string } }) => {
       {car &&
         (
           <>
-            <div className="grid gap-4 grid-flow-col">
-              <div className='grow'>
-                <Image
-                  src={`${IMG_URL_PREFIX}${imgList[0]}.jpg` || defaultImg}
-                  alt={`Slide `}
-                  className="w-full"
-                  width={300}
-                  height={300} />
-              </div>
-
-              {/* small image  */}
-              <div className="grid grid-rows-5 gap-4">
-                {
-                  imgList && imgList.map((singleImg, idx) => (
-                    <div id={`Image${idx}`} className=" w-full" key={idx}>
-                      <Image
-                        src={`${IMG_URL_PREFIX}${singleImg}.jpg` || defaultImg}
-                        alt={`Slide `}
-                        className="w-14 aspect-video cursor-pointer hover:border-emerald-600 border-2"
-                        width={300}
-                        height={300} />
-                    </div>
-                  ))
-                }
-              </div>
-
-            </div>
+            <GridAlbum imgList={imgList} />
 
             <div className=''>
               <div className='flex justify-between border-b-2 py-4 md:flex-row flex-col'>
@@ -77,7 +54,7 @@ const page = async ({ params }: { params: { carID: string } }) => {
                   <FaWhatsapp size={28} />
                 </Link>
               </div>
-              <h2 className=' border-b-2  py-4'>{car?.price}</h2>
+              <h2 className=' border-b-2  py-4'>Price(HKD): ${car?.price}</h2>
 
               <div className='border-b-2  py-4'>
                 <div className='flex gap-8 flex-wrap justify-around'>
@@ -90,7 +67,7 @@ const page = async ({ params }: { params: { carID: string } }) => {
             </div>
 
             <div className='space-y-4'>
-              <Link href={`/cars`} className='hover:text-green-500  text-2xl font-bold'>Latest Cars</Link>
+              <Link href={`/cars`} className='hover:text-amber-500  text-2xl font-bold'>Cars From Same Brand</Link>
               <CustomCarousel latestCars={relatedCarItem} />
             </div>
           </>)}

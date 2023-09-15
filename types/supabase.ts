@@ -1,5 +1,11 @@
 export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
+export type UpdateTables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Update']
 // export type carlistingRow = Database['public']['Tables']['carlisting']['Row']
+type carbrandF = { carbrand: { brandname: string | null } }
+type carmodelF = { carmodel: { modelname: string | null } }
+export type CarListingFormDT = Tables<'carlisting'> & carbrandF & carmodelF
+
+// ------------------
 export type Json =
   | string
   | number
@@ -41,7 +47,7 @@ export interface Database {
           listingid: number
           mileageinfo: string | null
           modelid: number | null
-          price: string | null
+          price: number | null
           seller_name: string | null
           seller_phone: string | null
           updated_at: string | null
@@ -60,7 +66,7 @@ export interface Database {
           listingid?: never
           mileageinfo?: string | null
           modelid?: number | null
-          price?: string | null
+          price?: number | null
           seller_name?: string | null
           seller_phone?: string | null
           updated_at?: string | null
@@ -79,7 +85,7 @@ export interface Database {
           listingid?: never
           mileageinfo?: string | null
           modelid?: number | null
-          price?: string | null
+          price?: number | null
           seller_name?: string | null
           seller_phone?: string | null
           updated_at?: string | null

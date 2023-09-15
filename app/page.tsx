@@ -9,14 +9,14 @@ import Image from 'next/image';
 import heroImg from "@/public/heroImg.jpg";
 import { CustomCarousel } from '@/components/CustomCarousel';
 import { SELECT_RECORD_SIZE } from '@/constant/constant';
+import { getBrandName, getCarListing, getModelName } from '@/action/action';
 
 export const dynamic = 'force-dynamic'
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies })
-  const { data } = await supabase.from('carlisting')
-    .select()
-    .order("create_dt")
-    .limit(SELECT_RECORD_SIZE)
+  const { data } = await getCarListing()
+  const brands = await getBrandName()
+  const models = await getModelName()
 
   return (
     <>
@@ -38,7 +38,7 @@ export default async function Home() {
             <div className="absolute inset-0 flex items-center justify-center flex-col px-8 space-y-8">
               <HeroHeader />
               <div className='w-full md:w-2/3'>
-                <SearchBar />
+                <SearchBar brands={brands} models={models} />
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@ export default async function Home() {
       </div>
 
       <section className='p-16 space-y-4'>
-        <Link href={`/cars`} className='hover:text-green-500 text-2xl font-bold'>Latest Cars</Link>
+        <Link href={`/cars`} className='hover:text-amber-500 text-2xl font-bold'>Latest Cars</Link>
         <CustomCarousel latestCars={data} />
       </section>
     </>

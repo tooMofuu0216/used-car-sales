@@ -16,14 +16,18 @@ export const CustomCarousel = ({ latestCars }: CustomCarouselProp) => {
         carousel: {
             item: {
                 wrapper: `w-[${carouselItemWidth}] mx-4 flex-shrink-0 transform cursor-grab snap-center`
+            },
+            control: {
+                base: "inline-flex h-8 w-8 items-center justify-center rounded-full  group-focus:outline-none group-focus:ring-4 group-focus:ring-white bg-gray-800/30 group-hover:bg-gray-800/60 group-focus:ring-gray-800/70 sm:h-10 sm:w-10",
+                icon: "h-5 w-5  text-white sm:h-6 sm:w-6"
             }
         }
     };
 
     return (
-        <Flowbite  theme={{ theme: customTheme }}>
+        <Flowbite theme={{ theme: customTheme }}>
             <Carousel
-             className='h-64 items-center px-4 gap-4 bg-gray-400 dark:bg-gray-700 dark:text-white'
+                className='h-64 items-center px-4 gap-4 bg-gray-400 dark:bg-gray-700 dark:text-white'
                 slide={false}
                 indicators={false} >
                 {

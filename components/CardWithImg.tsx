@@ -18,13 +18,13 @@ export const CardWithImg = ({ carData, carThumb }: CardProp) => {
         <Link href={`/cars/${carData?.listingid}`}>
             <Card>
                 <Image width={200} alt={`Slide `} height={200}
-                    src={`${IMG_URL_PREFIX}${carThumb}.jpg` || defaultImg}
+                    src={`${IMG_URL_PREFIX}${carThumb}` || defaultImg}
                     className='aspect-video w-full' />
                 <h5 className="text-sm font-bold truncate tracking-tight text-gray-900 dark:text-white">
                 {carData?.carname}
                 </h5>
                 <p className="font-normal text-gray-700 dark:text-gray-400">
-                {carData?.price}
+                ${carData?.price}
                 </p>
             </Card>
         </Link>

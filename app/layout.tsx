@@ -24,7 +24,7 @@ export default async function RootLayout({
         <div className='flex flex-col h-full'>
           <Navbar />
           <main className='pt-[68px] flex flex-col grow'>{children}</main>
-          <div>footer</div>
+          {/* <div>footer</div> */}
         </div>
       </body>
     </html>

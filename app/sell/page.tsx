@@ -1,20 +1,18 @@
-import { SellCarForm } from '@/components/SellCarForm'
+import { getBrandName } from '@/action/action'
+import { CarListingForm } from '@/components/CarListingForm'
+import { SELL_FORM } from '@/constant/constant'
 import { Database } from '@/types/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import React from 'react'
 import { BsCardChecklist, BsHandIndex, BsPencil } from 'react-icons/bs'
+import { useRouter } from 'next/navigation';
 
-const page = async () => {
+const Sell = async () => {
     const supabase = createServerComponentClient<Database>({ cookies })
-    const getBrandName = async () => {
-        const { data } = await supabase.from('carbrand')
-            .select()
-            .order("brandname")
-        return data
-    }
     const brands = await getBrandName()
-
+    const { data: { user } } = await supabase.auth.getUser()
+    if(!user) return
     return (
         <div className='p-16 m-auto space-y-8 '>
             <div className='flex gap-8'>
@@ -37,9 +35,9 @@ const page = async () => {
                     <p>3. Wait For Buyer</p>
                 </div>
             </div>
-            <SellCarForm brands={brands} />
+            <CarListingForm brands={brands} type={SELL_FORM} />
         </div>
     )
 }
 
-export default page
+export default Sell

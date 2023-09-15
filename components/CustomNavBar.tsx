@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { CustomModal } from './CustomModal';
+import { LoginModal } from './LoginModal';
 import { User } from '@supabase/auth-helpers-nextjs'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/supabase';
@@ -53,17 +53,17 @@ const CustomNavBar = (
 
     const navItems = (!user
         ? (<li>
-            <button onClick={() => setShowModal(true)}>
+            <button onClick={() => setShowModal(true)} className='hover:text-amber-500'>
                 Login / Sign Up
             </button>
         </li>)
         : (
             <>
-                <li>
+                <li  className='hover:text-amber-500'>
                     <Link href="/editList">Edit Listings</Link>
                 </li>
-                <li><Link href="/sell">Sell Car</Link></li>
-                <li><Link href="#" onClick={handleLogOut}>Log Out</Link></li>
+                <li  className='hover:text-amber-500'><Link href="/sell">Sell Car</Link></li>
+                <li  className='hover:text-amber-500'><Link href="#" onClick={handleLogOut}>Log Out</Link></li>
             </>
         ))
 
@@ -79,7 +79,7 @@ const CustomNavBar = (
                 </ul>
                 {/* </div> */}
                 <div className="md:hidden">
-                    <button onClick={toggleMenu} className="text-3xl">
+                    <button onClick={toggleMenu} className="text-3xl hover:text-amber-500">
                         {showMenu ? '×' : '☰'}
                     </button>
                 </div>
@@ -92,7 +92,7 @@ const CustomNavBar = (
                 </div>
             </div>
 
-            <CustomModal setShowModal={setShowModal} showModal={showModal} />
+            <LoginModal setShowModal={setShowModal} showModal={showModal} />
         </nav>
     )
 }
