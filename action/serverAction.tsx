@@ -5,8 +5,8 @@ import { searchParamsType } from "@/types/common";
 import { CarListingFormDT, Database, Tables } from "@/types/supabase";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { getCarListing } from "./action";
 
+// export const dynamic = 'force-dynamic'
 export async function fetchCars(page: number, searchParams: searchParamsType) {
     let carLists: Tables<'carlisting'>[] = []
     const searchQuery = searchParams.search ?? ""

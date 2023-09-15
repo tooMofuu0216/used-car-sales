@@ -9,6 +9,7 @@ import { getBrandName, getModelName } from '@/action/action'
 import { searchParamsType } from '@/types/common'
 
 
+export const dynamic = 'force-dynamic'
 
 const page = async ({
     searchParams,

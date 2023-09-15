@@ -8,6 +8,7 @@ import React from 'react'
 import { BsCardChecklist, BsHandIndex, BsPencil } from 'react-icons/bs'
 import { useRouter } from 'next/navigation';
 
+export const dynamic = 'force-dynamic'
 const Sell = async () => {
     const supabase = createServerComponentClient<Database>({ cookies })
     const brands = await getBrandName()

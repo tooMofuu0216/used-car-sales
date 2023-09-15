@@ -10,6 +10,7 @@ import { CustomCarousel } from '@/components/CustomCarousel'
 import { DEFAULT_GRID_IMG, IMG_URL_PREFIX, MAX_IMG, SELECT_RECORD_SIZE } from '@/constant/constant'
 import { GridAlbum } from '@/components/GridAlbum'
 
+export const dynamic = 'force-dynamic'
 const page = async ({ params }: { params: { carID: string } }) => {
   const supabase = createServerComponentClient<Database>({ cookies })
   const defaultPhone = `12341234`

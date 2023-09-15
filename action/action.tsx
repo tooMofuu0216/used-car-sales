@@ -3,6 +3,7 @@ import { Database } from "@/types/supabase";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
+export const dynamic = 'force-dynamic'
 const supabase = createServerComponentClient<Database>({ cookies })
 
 export const getBrandName = async () => {
