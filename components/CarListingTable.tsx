@@ -111,7 +111,7 @@ export default function CarListingTable({
                 <Table.Body className="divide-y">
                     {
                         tableDataList && tableDataList.map((row, idx) => (
-                            <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800 text-gray-900 dark:text-white md:table-row flex flex-col">
+                            <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-gray-800 text-gray-900 dark:text-white md:table-row flex flex-col shadow-md md:mb-0 mb-4">
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                     <span className='md:hidden inline font-semibold '>{tableHeaderID}: </span>
                                     {row.listingid}

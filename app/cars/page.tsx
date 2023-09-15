@@ -87,9 +87,10 @@ const Cars = async ({
 
   return (
     <>
-      <div className=' md:px-32 px-16 py-12 flex flex-col grow'>
+      <div className=' md:px-32 px-16 py-12 flex flex-col grow bg-[#f4fafa]'>
         <SearchBar brands={brands} models={models} />
         <div className={`mt-12 grow grid gap-3
+        bg-[#f4fafa]
          grid-cols-1
          sm:grid-cols-2
            lg:grid-cols-3

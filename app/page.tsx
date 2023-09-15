@@ -45,7 +45,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <section className='p-16 space-y-4'>
+      <section className='p-16 space-y-4 bg-white grow'>
         <Link href={`/cars`} className='hover:text-amber-500 text-2xl font-bold'>Latest Cars</Link>
         <CustomCarousel latestCars={data} />
       </section>

@@ -14,10 +14,12 @@ export const GridAlbum = ({
     const defaultBigImgSrc = `${IMG_URL_PREFIX}${imgList[0]}`
     const [bigImgSrc, setBigImgSrc] = useState(defaultBigImgSrc)
     const [openModal, setOpenModal] = useState(false)
+    const [modalTitle, setModalTitle] = useState(`Image `)
 
-    const handleClick = (ev: React.MouseEvent) => {
+    const handleClick = (ev: React.MouseEvent<HTMLImageElement>) => {
         const src = ev.currentTarget.getAttribute(`src`)
         setBigImgSrc(src || defaultBigImgSrc)
+        setModalTitle(`Image ${ev.currentTarget.dataset.idx}`)
     }
 
     const showEnlargeImg = (ev: React.MouseEvent) => {
@@ -43,6 +45,7 @@ export const GridAlbum = ({
                             <Image
                                 src={`${IMG_URL_PREFIX}${singleImg}` || defaultImg}
                                 alt={`Slide `}
+                                data-idx={idx+1}
                                 onClick={handleClick}
                                 className="w-14 aspect-video cursor-pointer hover:border-emerald-600 border-2"
                                 width={300}
@@ -58,7 +61,7 @@ export const GridAlbum = ({
                 onClose={() => setOpenModal(false)}
                 className='w-screen'
             >
-                <Modal.Header></Modal.Header>
+                <Modal.Header>{modalTitle}</Modal.Header>
                 <Modal.Body className=''>
                     <Image
                         src={bigImgSrc || defaultImg}

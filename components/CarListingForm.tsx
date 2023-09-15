@@ -131,7 +131,7 @@ export const CarListingForm = ({ brands, type, listingData, resultAndformModalCo
     }
 
     return (
-        <div className="flex max-w-md flex-col gap-4">
+        <div className="flex max-w-md flex-col gap-4 ">
             <form action="/" onSubmit={handleSubmit} ref={formRef}>
 
                 {/* brand */}

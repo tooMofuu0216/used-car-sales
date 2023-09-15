@@ -53,11 +53,11 @@ const page = async ({
 
     return (
         <>
-            <div className='md:p-16'>
+            <div className='md:p-16 bg-[#ebfcfb]'>
                 <SearchBar brands={brands} models={models} />
             </div>
 
-            <div className='p-4'>
+            <div className='p-4 bg-[#ebfcfb]'>
                 <CarListingTable searchParams={searchParams} brands={null} tableData={carLists} />
             </div>
         </>

@@ -40,13 +40,13 @@ const page = async ({ params }: { params: { carID: string } }) => {
   const relatedCarItem = await getRelatedCarItem()
 
   return (
-    <div className='flex flex-col xl:px-64 px-16 py-12 gap-8'>
+    <div className='flex flex-col xl:px-64 px-16 py-12 gap-8 bg-[#ebfcfb]'>
       {car &&
         (
           <>
             <GridAlbum imgList={imgList} />
 
-            <div className=''>
+            <div className='bg-white p-4 rounded-sm shadow-md'>
               <div className='flex justify-between border-b-2 py-4 md:flex-row flex-col'>
                 <h1 className='text-xl'>{car?.carname}</h1>
                 <Link href={`https://wa.me/852${car.seller_phone || defaultPhone}`}
@@ -56,7 +56,7 @@ const page = async ({ params }: { params: { carID: string } }) => {
               </div>
               <h2 className=' border-b-2  py-4'>Price(HKD): ${car?.price}</h2>
 
-              <div className='border-b-2  py-4'>
+              <div className='  py-4'>
                 <div className='flex gap-8 flex-wrap justify-around'>
                   <div><p className='font-bold'>Year:</p>{car?.year}</div>
                   <div><p className='font-bold'>CC:</p>{car?.cc}</div>
