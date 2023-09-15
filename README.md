@@ -1,6 +1,6 @@
 This is a used car sales website, using the following tech stack:
--Front-end: Tailwind CSS, Flowbite
--Back-end: Next.js, Supabase, 
+* Front-end: Tailwind CSS, Flowbite
+* Back-end: Next.js, Supabase, 
 
 ## Use Case
 User can:
